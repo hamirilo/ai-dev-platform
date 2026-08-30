@@ -1,6 +1,6 @@
-[submodule "ai-dev-standards"]
-	path = ai-dev-standards
+[submodule "standards"]
+	path = standards
 	url = git@github.com:hamirilo/ai-dev-standards.git
-[submodule "ai-dev-playbook"]
-	path = ai-dev-playbook
+[submodule "playbook"]
+	path = playbook
 	url = git@github.com:hamirilo/ai-dev-playbook.git
