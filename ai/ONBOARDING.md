@@ -57,14 +57,16 @@ UIを設計・実装するときは、独立リポジトリ [ui-platform](https:
 
 AIがUIタスクを扱う場合:
 
-1. **対象Applicationの `package.json` / lockfileから、実際に利用している `@hamirilo/application-ui-kit` のversionを確認する**
+1. 対象Applicationが `@hamirilo/application-ui-kit` を利用しているか確認する
+   - **利用している場合**: `package.json` / lockfileから実際のversionを確認し、そのversionを実装上のSource of Truthとする
+   - **利用していない場合**: version確認は不要。`ui-platform` のPattern / Template / Catalogを設計参照として利用し、UI Kit導入を自動的に前提としない
 2. 新しいUIを作る前に、`ui-platform` の既存Component / Pattern / Templateを確認する
 3. UX上の選択に迷う場合はPatternを参照する
 4. 画面全体の構成を検討する場合はTemplateを参照する
 5. 実際の見た目・状態・操作を確認する場合はStorybook Catalogを参照する
-6. 既存Componentで解決できる場合は再実装しない
+6. UI Kit採用済みのApplicationで既存Componentにより解決できる場合は再実装しない
 
-`ui-platform` 自体はApplicationの依存versionのSource of Truthではない。実際に利用しているpackage versionは対象Application側を正とする。
+`ui-platform` 自体はApplicationの依存versionのSource of Truthではない。実際にUI Kitを利用している場合、そのpackage versionは対象Application側を正とする。
 
 業務ドメイン固有のUIは、各アプリまたはドメイン所有側で管理する。
 
