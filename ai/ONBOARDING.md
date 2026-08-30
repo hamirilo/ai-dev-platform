@@ -15,7 +15,7 @@
 5. 新しいStandardやレイアウト・共通実装を「将来使うかもしれない」という理由だけで増やさないこと。
 6. **新しいライブラリ・パッケージを追加する前に [Recommendations](../recommendations/) を確認すること。** 未収録のものを導入する場合は、健全性チェックの結果を短く提示してから追加すること。
 7. **実装に入る前に、対象プロジェクトの `decisions/project-context.md` があれば読むこと。** 対象ユーザー、認証の要否、主対象デバイス、認可の粒度といった前提を勝手に仮定しないこと。存在しない場合でも無関係な小規模修正は止めず、前提がタスクの設計を実質的に左右する場合だけ確認すること。その他のプロジェクト側ADRは、関連するタスクを扱う場合のみ読むこと。
-8. **詳細な実装手順や検証方法をStandardへ追加しないこと。** 必要な場合は [Playbook](../playbook/) を参照し、再利用可能なUI設計・実装はapplication-ui-kitを参照すること。どちらも該当タスクのときだけ読むこと。
+8. **詳細な実装手順や検証方法をStandardへ追加しないこと。** 必要な場合は [Playbook](../playbook/) を参照すること。UI/UXの設計・再利用可能なUI実装・Pattern・Template・Catalogは `ui-platform` を参照すること。いずれも該当タスクのときだけ読むこと。
 9. **対象プロジェクトで定義されている型チェック、Linter、Build、基本テストを通過させること。** これらは該当する場合、PR・マージ・リリースの必須ゲートです。
 
 ---
@@ -44,13 +44,29 @@ AIはOptional Standardを先回りしてすべて読まず、該当する場合�
 
 依存を追加・変更する場合のみ読むこと。Standardと異なり拘束力は弱く、逸脱にADRを求めない。
 
-### 3. UI/UX・設計パターン → Patterns
+### 3. UI/UX設計・UI実装 → ui-platform
 
-UI/UXの設計に迷ったとき、過去に検討した良いパターンを参照する:
+UIを設計・実装するときは、独立リポジトリ [ui-platform](https://github.com/hamirilo/ui-platform) を参照する。
 
-👉 [Patterns](../patterns/)
+`ui-platform` の責務:
 
-該当するパターンがある場合のみ参照すること。
+- **Components** — 実際に利用する再利用可能なUI部品
+- **Patterns** — 同じUX課題に対する設計候補と選択条件
+- **Templates** — 複数Patternを組み合わせた画面レベルの構成例
+- **Catalog / Storybook** — Component・Pattern・Templateを見て比較・検証する表示面
+
+AIがUIタスクを扱う場合:
+
+1. **対象Applicationの `package.json` / lockfileから、実際に利用している `@hamirilo/application-ui-kit` のversionを確認する**
+2. 新しいUIを作る前に、`ui-platform` の既存Component / Pattern / Templateを確認する
+3. UX上の選択に迷う場合はPatternを参照する
+4. 画面全体の構成を検討する場合はTemplateを参照する
+5. 実際の見た目・状態・操作を確認する場合はStorybook Catalogを参照する
+6. 既存Componentで解決できる場合は再実装しない
+
+`ui-platform` 自体はApplicationの依存versionのSource of Truthではない。実際に利用しているpackage versionは対象Application側を正とする。
+
+業務ドメイン固有のUIは、各アプリまたはドメイン所有側で管理する。
 
 ### 4. 実装方法・検証・障害対応 → Playbook
 
@@ -59,19 +75,6 @@ UI/UXの設計に迷ったとき、過去に検討した良いパターンを参
 👉 [Playbook](../playbook/)
 
 タスクに必要なPlaybookだけを読むこと。
-
-### 5. UI実装 → application-ui-kit
-
-UIを実装するプロジェクトがapplication-ui-kitを採用している場合:
-
-1. **対象Applicationの `package.json` 等から実際のUI Kit versionを確認する**
-2. 必要に応じて `application-ui-kit` リポジトリを参照する
-   - `design-system/`: 設計参照
-   - UI package: 再利用可能な実装
-   - Storybook: 使用例・状態確認・視覚検証
-3. UI/UX設計に迷う場合は [Patterns](../patterns/) を参照する
-
-業務ドメイン固有のUIは、各アプリまたはドメイン所有側で管理する。
 
 ---
 
@@ -91,7 +94,7 @@ AIエージェントは品質推奨を常時適用せず、ユーザーから明
 
 ## Standardを増やそうとしたとき
 
-追加基準と配置先（Core / Optional / Recommendation / Pattern / Shared implementation / Project側）の判断は、[ADR-0003](../standards/decisions/adr-0003-core-and-optional-standards.md) を正として従ってください。繰り返しが確認されていないものを先回りしてStandard化しません。
+追加基準と配置先（Core / Optional / Recommendation / Shared implementation / Project側）の判断は、[ADR-0003](../standards/decisions/adr-0003-core-and-optional-standards.md) を正として従ってください。UI Pattern / Template / Catalogは `ui-platform` の責務です。繰り返しが確認されていないものを先回りしてStandard化しません。
 
 ## 実装資産について
 
