@@ -1,6 +1,8 @@
 # AI Development Platform
 
-開発時に「何を守るか・何を選ぶか・どう設計するか・どう実装するか」へ適切にルーティングする統合入口です。
+開発時に「何を守るか・何を選ぶか・どう実装するか」へ適切にルーティングする統合入口です。
+
+UI/UXの設計・実装については、独立した **ui-platform** を参照します。
 
 ## 構成
 
@@ -10,8 +12,7 @@ ai-dev-platform/
 │   └── ONBOARDING.md       ← AIエージェントが最初に読むルーター
 ├── standards/               [git submodule: ai-dev-standards]
 ├── playbook/                [git submodule: ai-dev-playbook]
-├── recommendations/
-└── patterns/
+└── recommendations/
 ```
 
 ## 各領域の役割
@@ -20,9 +21,8 @@ ai-dev-platform/
 |---|---|---|
 | Standards | 何を守る？ | [standards/](standards/) |
 | Recommendations | 普段は何を選ぶ？ | [recommendations/](recommendations/) |
-| Patterns | どう設計する？ | [patterns/](patterns/) |
-| Playbook | どう実装する？ | [playbook/](playbook/) |
-| UI Kit | 実際に使える部品は？ | application-ui-kit（独立リポジトリ） |
+| Playbook | どう実装・検証する？ | [playbook/](playbook/) |
+| UI Platform | UIをどう設計・実装する？ | [hamirilo/ui-platform](https://github.com/hamirilo/ui-platform) |
 | Project Context / ADR | このプロジェクト固有ではどうする？ | 各プロジェクト側 |
 
 同じ内容を複数箇所へ重複して記述しません。必要な場合は相互参照します。
@@ -45,20 +45,28 @@ workspace/
 ├── ai-dev-platform/
 │   ├── standards/
 │   ├── playbook/
-│   ├── recommendations/
-│   └── patterns/
+│   └── recommendations/
 │
-├── application-ui-kit/
+├── ui-platform/
 ├── dx-portal/
 ├── directory/
 └── ...
 ```
 
-## application-ui-kit との関係
+## ui-platform との関係
 
-UI Kitは本リポジトリのsubmoduleにはしません。独立したリポジトリ・パッケージとして維持します。
+`ui-platform` は本リポジトリのsubmoduleにはしません。独立したリポジトリとして維持します。
 
-UI Kitは参照用知識ではなく、各Applicationが実際に依存するソフトウェアパッケージです。各Applicationで使用しているUI Kitのバージョンについては、そのApplicationの `package.json` / lockfile を Source of Truth とします。
+UIに関する責務は `ui-platform` に集約します。
+
+- **Components**: 各Applicationが実際に利用する再利用可能なUI部品
+- **Patterns**: 同じUX課題に対する設計候補と選択条件
+- **Templates**: 複数Patternを組み合わせた画面レベルの構成例
+- **Catalog / Storybook**: Component・Pattern・Templateを見て比較・検証する表示面
+
+実際にApplicationが利用するpackageは `@hamirilo/application-ui-kit` です。packageのバージョンについては、対象Applicationの `package.json` / lockfile を Source of Truth とします。
+
+AIがUIを扱う場合は、対象Applicationのpackage versionを確認したうえで `ui-platform` のComponent / Pattern / Template / Storybookを必要に応じて参照してください。
 
 ## 知識の成熟
 
@@ -69,22 +77,20 @@ Project固有の実装・判断
         ↓
 複数回利用して有効だった
         ↓
-Pattern / Playbook / Recommendation
+Recommendation / Playbook
         ↓
-さらに繰り返し実装される
-        ↓
-必要ならUI Kit等として共通実装
+UIに関する再利用可能な判断・実装なら ui-platform
         ↓
 不一致による実害が大きい
         ↓
 必要な場合のみStandard
 ```
 
-Standardへの昇格は慎重にします。PatternやRecommendationとして十分であれば、Standardにする必要はありません。
+Standardへの昇格は慎重にします。Recommendation、Playbook、またはui-platformで十分であればStandardにする必要はありません。
 
 ## このリポジトリに置かないもの
 
-- UIコンポーネント、デザインシステム、Storybook（application-ui-kitの責務）
+- UIコンポーネント、UI Pattern、Template、Storybook（ui-platformの責務）
 - 社員・組織・認証基盤などの業務ドメイン固有情報（各プロジェクトの責務）
 - 新規プロジェクト用テンプレートやボイラープレート
 - AIエージェント定義、モデル設定、複雑なワークフロー実行基盤
