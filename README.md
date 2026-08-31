@@ -64,7 +64,7 @@ UIに関する責務は `ui-platform` に集約します。
 - **Templates**: 複数Patternを組み合わせた画面レベルの構成例
 - **Catalog / Storybook**: Component・Pattern・Templateを見て比較・検証する表示面
 
-実際にApplicationが利用するpackageは `@hamirilo/application-ui-kit` です。packageのバージョンについては、対象Applicationの `package.json` / lockfile を Source of Truth とします。
+Application側ではUI Kitを `application-ui-kit` という固定の依存名で利用します。GitHub Packages上の実パッケージ名はpublish元に応じた `@<owner>/application-ui-kit` で、利用側の `package.json` ではnpm aliasにより固定名へ割り当てます。packageのバージョンについては、対象Applicationの `package.json` / lockfile を Source of Truth とします。
 
 AIがUIを扱う場合は、対象Applicationのpackage versionを確認したうえで `ui-platform` のComponent / Pattern / Template / Storybookを必要に応じて参照してください。
 
