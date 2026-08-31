@@ -46,7 +46,7 @@ AIはOptional Standardを先回りしてすべて読まず、該当する場合�
 
 ### 3. UI/UX設計・UI実装 → ui-platform
 
-UIを設計・実装するときは、独立リポジトリ [ui-platform](https://github.com/hamirilo/ui-platform) を参照する。
+UIを設計・実装するときは、独立リポジトリ [ui-platform](https://github.com/jazmf-dx/ui-platform) を参照する。
 
 `ui-platform` の責務:
 
@@ -57,7 +57,7 @@ UIを設計・実装するときは、独立リポジトリ [ui-platform](https:
 
 AIがUIタスクを扱う場合:
 
-1. 対象Applicationが `@hamirilo/application-ui-kit` を利用しているか確認する
+1. 対象Applicationが `@<owner>/application-ui-kit` を利用しているか確認する（scopeはpublish時にリポジトリ所有者から導出されるため、この組織では `@jazmf-dx/application-ui-kit`）
    - **利用している場合**: `package.json` / lockfileから実際のversionを確認し、そのversionを実装上のSource of Truthとする
    - **利用していない場合**: version確認は不要。`ui-platform` のPattern / Template / Catalogを設計参照として利用し、UI Kit導入を自動的に前提としない
 2. 新しいUIを作る前に、`ui-platform` の既存Component / Pattern / Templateを確認する
