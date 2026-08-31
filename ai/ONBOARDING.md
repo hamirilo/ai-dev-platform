@@ -57,7 +57,8 @@ UIを設計・実装するときは、独立リポジトリ [ui-platform](https:
 
 AIがUIタスクを扱う場合:
 
-1. 対象Applicationが `@hamirilo/application-ui-kit` を利用しているか確認する
+1. 対象Applicationが `application-ui-kit` を依存として利用しているか確認する
+   - 実パッケージは `@<owner>/application-ui-kit` だが、利用側ではnpm aliasにより依存名を `application-ui-kit` に固定する
    - **利用している場合**: `package.json` / lockfileから実際のversionを確認し、そのversionを実装上のSource of Truthとする
    - **利用していない場合**: version確認は不要。`ui-platform` のPattern / Template / Catalogを設計参照として利用し、UI Kit導入を自動的に前提としない
 2. 新しいUIを作る前に、`ui-platform` の既存Component / Pattern / Templateを確認する
