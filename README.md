@@ -85,17 +85,18 @@ workspace/
 
 ## 更新方法
 
-Platform本体を更新した後、Platformが指しているsubmoduleの組合せへ同期します。
+mainの最新Platformへ追従し、そのcommitが指しているsubmoduleの組合せへ同期する場合は、明示的にmainへ切り替えてから更新します。
 
 ```bash
 cd ai-dev-platform
+git switch main
 git pull --ff-only
 git submodule update --init --recursive
 ```
 
 通常利用では、Application側からStandards / Playbookを個別に追従しません。どの組合せを利用するかはPlatformのsubmodule pointerを正とします。
 
-同じ判断を再現する必要がある作業では、Platform自体をrelease tagまたはcommitで固定します。
+release tagまたはcommitへ固定して再現性を確保している場合は、上記のmain更新手順を実行せず、その固定commitが指すsubmoduleを利用します。
 
 ## ui-platform との関係
 
