@@ -22,7 +22,7 @@ ai-dev-platform/
 | Standards | 何を守る？ | [standards/](standards/) |
 | Recommendations | 普段は何を選ぶ？ | [recommendations/](recommendations/) |
 | Playbook | どう実装・検証する？ | [playbook/](playbook/) |
-| UI Platform | UIをどう設計・実装する？ | [hamirilo/ui-platform](https://github.com/hamirilo/ui-platform) |
+| UI Platform | UIをどう設計・実装する？ | [jazmf-dx/ui-platform](https://github.com/jazmf-dx/ui-platform) |
 | Project Context / ADR | このプロジェクト固有ではどうする？ | 各プロジェクト側 |
 
 同じ内容を複数箇所へ重複して記述しません。必要な場合は相互参照します。
@@ -37,6 +37,22 @@ ai-dev-platform/
 <!-- 各プロジェクトの CLAUDE.md への記載例 -->
 開発Standardは ../ai-dev-platform/ai/ONBOARDING.md を最初に読むこと。
 ```
+
+### submodule の初期化（必須）
+
+`standards/` と `playbook/` はsubmoduleです。**初期化していないと空ディレクトリのままで、
+ルーターが指す先を一切読めません。**
+
+```bash
+# 新規に取得する場合
+git clone --recurse-submodules https://github.com/jazmf-dx/ai-dev-platform.git
+
+# すでにcheckout済みの場合
+git submodule update --init --recursive
+```
+
+submoduleを更新するときは `git submodule update --remote` ではなく、対象リポジトリで
+確認したcommit（release tag）を指すようにpinします。
 
 ### ワークスペースの配置例
 
@@ -64,7 +80,7 @@ UIに関する責務は `ui-platform` に集約します。
 - **Templates**: 複数Patternを組み合わせた画面レベルの構成例
 - **Catalog / Storybook**: Component・Pattern・Templateを見て比較・検証する表示面
 
-実際にApplicationが利用するpackageは `@hamirilo/application-ui-kit` です。packageのバージョンについては、対象Applicationの `package.json` / lockfile を Source of Truth とします。
+実際にApplicationが利用するpackageは `@<owner>/application-ui-kit` です。scopeは`ui-platform`のpublishワークフローがリポジトリ所有者から導出するため、この組織では `@jazmf-dx/application-ui-kit` になります（`ui-platform` の `package.json` に書かれているscopeは公開時に書き換えられるので、そのまま利用側の名前にはなりません）。packageのバージョンについては、対象Applicationの `package.json` / lockfile を Source of Truth とします。
 
 AIがUIを扱う場合は、対象Applicationのpackage versionを確認したうえで `ui-platform` のComponent / Pattern / Template / Storybookを必要に応じて参照してください。
 
