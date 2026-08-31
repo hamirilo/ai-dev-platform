@@ -125,17 +125,18 @@ Standardとの違いだけを理由に、依存ライブラリの一括置換、
 
 ## 7. Platformを更新する
 
-Platform本体を更新した後、mainが指しているStandards / Playbookの組合せへsubmoduleを同期します。
+mainの最新Platformへ追従し、そのcommitが指しているStandards / Playbookの組合せへsubmoduleを同期する場合は、明示的にmainへ切り替えてから更新します。
 
 ```bash
 cd ai-dev-platform
+git switch main
 git pull --ff-only
 git submodule update --init --recursive
 ```
 
 通常のApplication開発では、Standards / PlaybookのsubmoduleをApplication側から個別に追従させません。**どの組合せを利用するかはPlatformのsubmodule pointerを正**とします。
 
-再現性が必要な作業では、Platform自体をrelease tagまたはcommitで固定します。
+release tagまたはcommitへ固定して再現性を確保している場合は、上記のmain更新手順を実行せず、その固定commitが指すsubmoduleを利用します。
 
 ## 完了条件
 
