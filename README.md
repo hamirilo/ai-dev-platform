@@ -54,6 +54,30 @@ git submodule update --init --recursive
 submoduleを更新するときは `git submodule update --remote` ではなく、対象リポジトリで
 確認したcommit（release tag）を指すようにpinします。
 
+<important>
+**pinを巻き戻さないこと。** 古いcheckoutのままcommitすると、submoduleのポインタが
+前のcommitへ戻ります。この差分はファイルの中身として見えず、1行のSHA変更にしか
+見えないため、レビューでも気づきにくい。**巻き戻ると、そのcommitより後にStandardや
+Playbookへ入れた修正が、このリポジトリ経由では一切見えなくなります。**
+
+pinを含むcommitの前に、必ず向きを確認します。
+
+```bash
+# 何がどちらへ動くかを、commitメッセージ付きで表示する
+git diff --cached --submodule=log
+
+# 意図せず古いcommitを掴んでいないか（リモートの最新を取得してから確認）
+git submodule foreach 'git fetch origin --tags --force --quiet && git log --oneline -1 HEAD'
+```
+
+`--force` が要るのは、参照先リポジトリでタグを**切り直す**運用をしているため。
+付けないと `! [rejected] v2.0.0 -> v2.0.0 (would clobber existing tag)` で
+終了コード1になり、確認そのものが走りません。
+
+`git diff --cached --submodule=log` の出力で、矢印が `<` （戻る）になっている
+submoduleがあれば、それは巻き戻しです。意図した巻き戻し以外はcommitしないこと。
+</important>
+
 ### ワークスペースの配置例
 
 ```text
