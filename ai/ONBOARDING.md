@@ -26,7 +26,6 @@
 - [Governance](../standards/standards/governance/) — AI利用、Git、Standard逸脱、機械的gate
 - [Architecture](../standards/standards/architecture/) — Django、PostgreSQL、認証・認可、Security、Logging、Testing、container boundary
   - React / TypeScriptを扱う場合: [TypeScript Standard](../standards/standards/architecture/typescript.md)
-  - Docker Composeの公開境界を扱う場合: [Container Network](../standards/standards/architecture/optional/container-network.md)
 - [Application UI](../standards/standards/application-ui/) — UI constraint、Layout Profile、Semantic Token、feedback、Form UX
 
 Optional Standardは該当機能を扱う場合だけ参照する。
