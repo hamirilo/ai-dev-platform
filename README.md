@@ -11,7 +11,8 @@ ai-dev-platform/
 ├── ai/
 │   └── ONBOARDING.md       AI agentが最初に読む唯一の入口
 ├── docs/
-│   └── adoption.md         Platformの導入・Applicationへの適用
+│   ├── adoption.md         Platformの導入・Applicationへの適用
+│   └── release.md          共有資産のversion・release方針
 ├── recommendations/        現時点の選択の正本
 ├── standards/              [submodule: ai-dev-standards]
 └── playbook/               [submodule: ai-dev-playbook]
@@ -98,6 +99,8 @@ git submodule update --init --recursive
 Standards / PlaybookをApplication側から個別にlatestへ進めません。**どの組合せを利用するかはPlatformのsubmodule pointerを正**とします。
 
 再現性が必要な場合はPlatform自体をrelease tagまたはcommitで固定し、そのcommitが指すsubmoduleを利用します。
+
+SemVerの判断、Standards / Playbook / Platformのrelease順序、正式なtagの扱いは[リリース方針](docs/release.md)を参照してください。
 
 ## UI Platformとの関係
 
