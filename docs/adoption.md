@@ -16,10 +16,11 @@ workspace/
 └── application-b/
 ```
 
-初回cloneではsubmoduleも同時に取得します。
+初回cloneではsubmoduleも同時に取得します。clone先のrepository URLを変数へ設定してから実行します。
 
 ```bash
-git clone --recurse-submodules <ai-dev-platform-repository-url>
+AI_DEV_PLATFORM_REPOSITORY_URL="https://github.com/your-owner/ai-dev-platform.git"
+git clone --recurse-submodules "$AI_DEV_PLATFORM_REPOSITORY_URL"
 ```
 
 通常のcloneを行った場合は後から初期化します。
