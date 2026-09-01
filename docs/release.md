@@ -4,7 +4,8 @@
 
 ## 正式なrelease
 
-- 正式なreleaseは、SemVer形式のtag（`v<major>.<minor>.<patch>`）を伴うGitHub Releaseとする。
+- 各リポジトリの正式なreleaseは、SemVer形式のtag（`v<major>.<minor>.<patch>`）を伴うGitHub Releaseとする。
+- npm package releaseは例外とし、`application-ui-kit-v<package-version>`形式のtagを使用する。
 - tagだけを単独で作らず、変更点と必要な移行事項をRelease notesへ記載する。
 - `main`は次のrelease候補であり、再現可能な採用versionとしてはrelease tagまたはcommitを指定する。
 - すべてのmergeでreleaseする必要はない。関連する変更をまとめてreleaseしてよい。
@@ -29,11 +30,12 @@
 
 StandardsまたはPlaybookの変更をPlatformへ採用する場合は、次の順序で進めます。
 
-1. 変更元リポジトリのPRをmergeし、必要なversionでreleaseする。
-2. 関係するStandards / Playbook間の矛盾がないことを確認する。
-3. Platformでsubmodule pointerをrelease済みcommitへ更新する。
-4. PlatformのRelease notesに、採用した各versionと主要な変更を記載する。
-5. Platformをreleaseする。
+1. 変更元リポジトリのPRをrelease候補として準備する。
+2. PRのhead commitを基準に、関係するStandards / Playbook間の矛盾がないことをrelease前に確認する。
+3. 確認済みのPRをmergeし、必要なversionで変更元リポジトリをreleaseする。
+4. Platformでsubmodule pointerをrelease済みcommitへ更新する。
+5. PlatformのRelease notesに、採用した各versionと主要な変更を記載する。
+6. Platformをreleaseする。
 
 StandardsとPlaybookの両方に変更がある場合は、原則としてStandards、Playbook、Platformの順にreleaseします。Playbookが新しいStandardを前提としない独立変更であれば、Standardsのreleaseは不要です。
 
