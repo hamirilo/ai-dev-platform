@@ -44,11 +44,11 @@ StandardsとPlaybookの両方に変更がある場合は、原則としてStanda
 | リポジトリ | release方法 | 備考 |
 |---|---|---|
 | `ai-dev-standards` | Release Please | release PRのversionと`CHANGELOG.md`を確認してmergeする |
-| `ai-dev-playbook` | 手動GitHub Release | 現時点では自動workflowを持たない |
+| `ai-dev-playbook` | Release Please | release PRのversionと`CHANGELOG.md`を確認してmergeする |
 | `ai-dev-platform` | 手動GitHub Release | submoduleの組合せとRecommendationsをreleaseする |
 | `ui-platform` | リポジトリとnpm packageを個別にrelease | 詳細は`ui-platform` READMEを正とする |
 
-release手段を揃えること自体を目的に自動化を増やしません。反復負荷や誤操作が実際に問題になった時点で、Playbook / PlatformへのRelease Please導入を検討します。
+release手段を揃えること自体を目的に自動化を増やしません。反復負荷や誤操作が実際に問題になった時点で、PlatformへのRelease Please導入を検討します。
 
 ## UI Platform
 
