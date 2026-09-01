@@ -35,8 +35,11 @@ UIの具体的なdesign・実装資産は独立した [ui-platform](https://gith
 
 ### 1. Platformをcloneする
 
+clone先のrepository URLを変数へ設定してから実行します。
+
 ```bash
-git clone --recurse-submodules <ai-dev-platform-repository-url>
+AI_DEV_PLATFORM_REPOSITORY_URL="https://github.com/your-owner/ai-dev-platform.git"
+git clone --recurse-submodules "$AI_DEV_PLATFORM_REPOSITORY_URL"
 ```
 
 通常のcloneを行った場合は後からsubmoduleを初期化します。
