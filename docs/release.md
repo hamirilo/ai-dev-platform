@@ -45,10 +45,12 @@ StandardsとPlaybookの両方に変更がある場合は、原則としてStanda
 |---|---|---|
 | `ai-dev-standards` | Release Please | release PRのversionと`CHANGELOG.md`を確認してmergeする |
 | `ai-dev-playbook` | Release Please | release PRのversionと`CHANGELOG.md`を確認してmergeする |
-| `ai-dev-platform` | 手動GitHub Release | submoduleの組合せとRecommendationsをreleaseする |
+| `ai-dev-platform` | Release Please | submoduleの組合せとRecommendationsをreleaseする |
 | `ui-platform` | リポジトリとnpm packageを個別にrelease | 詳細は`ui-platform` READMEを正とする |
 
-release手段を揃えること自体を目的に自動化を増やしません。反復負荷や誤操作が実際に問題になった時点で、PlatformへのRelease Please導入を検討します。
+Standards / Playbook / Platformは同じ最小構成のRelease Pleaseを利用します。共通Workflow repositoryや追加設定は設けず、複数packageや独自tagを持つUI Platformは個別に管理します。
+
+具体的な導入・運用・失敗時の確認は[リポジトリのリリースPlaybook](../playbook/playbooks/repository-release.md)を参照してください。
 
 ## UI Platform
 
