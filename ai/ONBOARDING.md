@@ -62,6 +62,7 @@ UI Taskでは次の順で確認する。
 2. 利用している場合はApplicationの `package.json` / lockfileからversionを確認し、新しいUIを作る前に既存Component / Pattern / Templateを確認する。既存Componentで解決できる場合は再実装しない。
 3. 利用していない場合もPattern / Template / Catalogはdesign referenceとして参照できるが、既存Componentがあることだけを理由にUI Kitを追加しない。
 4. UX上の選択はPattern、画面構成はTemplate、実際の状態・操作はStorybook Catalogを参照する。
+5. `application-ui-kit` を利用しているApplicationでは、見せ方だけの切替（tab、開閉、出し分け）とtemplate用の共通classはApplication側で重複実装せず、UI Platformが提供するものを優先する。Django TemplateへIsland / htmxを接続・追加する手順はPlaybookの [DjangoとReact Islandsの接続](../playbook/playbooks/django-react-islands.md) に従う。利用していないApplicationには3.が優先し、この項目を理由にUI Kitを追加しない。
 
 GitHub Packages上の実package名は `@<owner>/application-ui-kit`、Application codeからの依存名はnpm aliasで `application-ui-kit` に固定する。
 
