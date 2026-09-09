@@ -32,45 +32,11 @@ UIの具体的なdesign・実装資産は独立した [ui-platform](https://gith
 
 同じ内容を複数箇所へcopyしません。Platformは **入口、routing、Recommendations、Standards / Playbookの組合せ** を担当します。
 
-## Quick Start
+## 導入
 
-### 1. Platformをcloneする
+Platformは複数のApplicationから参照できるworkspace上の位置へ1つ配置し、各Applicationの `CLAUDE.md` 等からPlatform側の `ai/ONBOARDING.md` を最初に読むよう参照させます。Application側には、実装へ大きく影響する前提を記録する `decisions/project-context.md` を用意します。
 
-clone先のrepository URLを変数へ設定してから実行します。
-
-```bash
-AI_DEV_PLATFORM_REPOSITORY_URL="https://github.com/your-owner/ai-dev-platform.git"
-git clone --recurse-submodules "$AI_DEV_PLATFORM_REPOSITORY_URL"
-```
-
-通常のcloneを行った場合は後からsubmoduleを初期化します。
-
-```bash
-cd ai-dev-platform
-git submodule update --init --recursive
-```
-
-`.gitmodules` はowner-relative URLを利用します。forkで利用する場合は、同じowner配下に `ai-dev-standards` と `ai-dev-playbook` も用意します。これによりforkごとにsubmodule URLを書き換える差分を持ちません。
-
-### 2. ApplicationからPlatform ONBOARDINGを参照する
-
-各Applicationの `CLAUDE.md` 等には、Platform側の `ai/ONBOARDING.md` を最初に読むよう記載します。
-
-```markdown
-開発Standard・Recommendations・Playbookは
-../ai-dev-platform/ai/ONBOARDING.md
-を最初に参照すること。
-```
-
-実際のrelative pathはworkspace構成に合わせます。
-
-Applicationへ `ai-dev-standards` / `ai-dev-playbook` を直接submoduleとして追加しません。PlatformもApplicationへ埋め込まず、workspace上の共有入口として配置することを基本とします。
-
-### 3. Project Contextを用意する
-
-Application側に `decisions/project-context.md` を用意し、対象user、認証、主対象device、認可粒度等、実装へ大きく影響する現在の前提を記録します。
-
-詳細は [Adoption Guide](docs/adoption.md) を参照してください。
+clone、submoduleの取得、参照の書き方、Project Contextの項目、既存Applicationへの段階適用は [Adoption Guide](docs/adoption.md) を参照してください。
 
 ## Workspace例
 
@@ -87,37 +53,15 @@ workspace/
 
 ## 更新方法
 
-mainの最新Platformへ追従する場合は、Platform自身を更新してから、そのcommitがpinするsubmoduleへ同期します。
+Standards / Playbookのどの組合せを利用するかは、**Platformのsubmodule pointerを正**とします。Application側からStandards / Playbookを個別にlatestへ進めません。再現性が必要な場合はPlatform自体をrelease tagまたはcommitで固定し、そのcommitが指すsubmoduleを利用します。
 
-```bash
-cd ai-dev-platform
-git switch main
-git pull --ff-only
-git submodule update --init --recursive
-```
-
-Standards / PlaybookをApplication側から個別にlatestへ進めません。**どの組合せを利用するかはPlatformのsubmodule pointerを正**とします。
-
-再現性が必要な場合はPlatform自体をrelease tagまたはcommitで固定し、そのcommitが指すsubmoduleを利用します。
-
-SemVerの判断、Standards / Playbook / Platformのrelease順序、正式なtagの扱いは[リリース方針](docs/release.md)を参照してください。
+更新手順とfork利用時のtag同期は [Adoption Guide](docs/adoption.md) の「Platformを更新する」を、SemVerの判断、release順序、forkでの運用は [リリース方針](docs/release.md) を参照してください。
 
 ## UI Platformとの関係
 
 `ui-platform` はPlatformのsubmoduleにはしません。UIのrelease cycleとApplicationごとのpackage採用versionがStandards / Playbookとは異なるためです。
 
-UI Platformが所有するもの:
-
-- Foundations
-- Components
-- Patterns
-- Templates
-- Catalog / Storybook
-- AI / 人間向けdesign reference
-
-Application側でUI packageを利用する場合、依存名は `application-ui-kit` に固定します。GitHub Packages上の実package名は `@<owner>/application-ui-kit` とし、npm aliasでowner差分を利用側設定へ閉じ込めます。
-
-Package versionのSource of Truthは対象Applicationの `package.json` / lockfileです。
+UI Platformが所有する範囲、`application-ui-kit` のpackage名とversionの扱いは、[ONBOARDING](ai/ONBOARDING.md) の「UI design / implementation」、[ADR-0006](standards/decisions/adr-0006-platform-composition-boundary.md)、[ADR-0005](standards/decisions/adr-0005-upstream-fork-operation.md) を参照してください。
 
 ## 知識・資産の成熟
 
@@ -136,6 +80,14 @@ UIとして再利用するなら UI Platform
 ```
 
 最初からすべてをStandardや共有資産へ昇格させません。
+
+## メンテナンス
+
+本repository自体のリンク検査用に最小限のtoolを用意しています。submoduleを初期化してから実行します。
+
+```bash
+just check-docs
+```
 
 ## このrepositoryに置かないもの
 
