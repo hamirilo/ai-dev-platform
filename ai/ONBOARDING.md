@@ -5,15 +5,10 @@
 
 ## 必守事項
 
-1. **既存Standardを確認してから新しい判断を行う。**
-2. **既存実装を確認し、同じ用途を理由なく再実装しない。** UI Taskでは採用済みUI packageとUI Platformを確認する。
-3. **共有documentを最初から全量読まない。** Taskに必要なCore Standardだけを読み、Optional Standard / Recommendation / Playbookは該当する場合だけ読む。
-4. Standardから重要な逸脱をする場合はProject側ADR等に理由を残す。
-5. 「将来使うかもしれない」という理由だけでStandard、共通layer、Component、Patternを増やさない。
-6. 新しいlibrary / packageを追加する前に [Recommendations](../recommendations/) を確認する。未収録のものはmaintainability / security / ecosystem等を短く確認してから採用する。
-7. 実装へ大きく影響する場合、対象Applicationの `decisions/project-context.md` を先に読む。対象user、認証、device、認可等を勝手に仮定しない。
-8. **具体的なimplementation / migration / verification手順をStandardへ追加しない。** 判断・制約はStandards、手順はPlaybook、UIの具体的design / implementationはUI Platformへ置く。
-9. 対象projectで定義されているType Check、Linter、Build、基本Testを通す。該当する場合はPR / merge / releaseの必須gateとする。
+1. **共有documentを最初から全量読まない。** Taskに必要なCore Standardだけを読み、Optional Standard / Recommendation / Playbookは該当する場合だけ読む。
+2. **行動規範は [Governance Standard](../standards/standards/governance/) に従う。** AI利用、Git操作、Standard逸脱の記録、必須の機械的gateはすべてのTaskに適用するCore Standardであり、このfileへ再掲しない。
+3. **新しいlibrary / packageを追加する前に [Recommendations](../recommendations/) を確認する。** 未収録のものは [Recommendations README](../recommendations/README.md) の健全性チェックを行い、結果を短く提示してから採用する。
+4. **実装へ大きく影響する場合、対象Applicationの `decisions/project-context.md` を先に読む。** 対象user、認証、device、認可等を勝手に仮定しない。
 
 ---
 
@@ -23,7 +18,7 @@
 
 👉 [Standards](../standards/)
 
-- [Governance](../standards/standards/governance/) — AI利用、Git、Standard逸脱、機械的gate
+- [Governance](../standards/standards/governance/) — AI利用、Git、Standard逸脱、機械的gate。すべてのTaskで読む
 - [Architecture](../standards/standards/architecture/) — Django、PostgreSQL、認証・認可、Security、Logging、Testing、container boundary
   - React / TypeScriptを扱う場合: [TypeScript Standard](../standards/standards/architecture/typescript.md)
 - [Application UI](../standards/standards/application-ui/) — UI constraint、Layout Profile、Semantic Token、feedback、Form UX
@@ -78,24 +73,10 @@ Package versionのSource of Truthは対象Applicationの `package.json` / lockfi
 
 ---
 
-## 必須gateと品質推奨
+## 品質
 
-### 必須gate
-
-対象projectに存在する次の機械的検証は、該当する場合に必須gateとする。
-
-- Type Check
-- Linter
-- Production Build
-- 基本Test
-
-errorを抑制して成功扱いにせず、原因側を修正する。
-
-### 品質推奨
-
-Performance、Accessibility、実browser操作性等は [Quality Recommendations](../recommendations/quality.md) を参照する。
-
-具体的な測定・実browser確認は [Playbook](../playbook/) の品質確認・test/review手順を利用する。
+- 必須gate（Type Check、Linter、Production Build、基本Test）の扱いは [Governance Standard](../standards/standards/governance/) の「必須の機械的検証」に従う。
+- Performance、Accessibility、実browser操作性等の目標は [Quality Recommendations](../recommendations/quality.md)、測定・確認の手順は [品質確認Playbook](../playbook/playbooks/quality-checks.md) を参照する。
 
 ---
 

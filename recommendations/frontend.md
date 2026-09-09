@@ -109,10 +109,13 @@ GitHub star数は後述のPhotoSwipeより大幅に少ないが、star数は登�
 ## 日付・時刻の操作
 
 **既定**: date-fns — https://date-fns.org/
+**ステータス**: 推奨 / **確認日**: 2026-09-09
 
 - 業務上の日付判定・集計は、[Architecture Standard「時刻・タイムゾーン」](../standards/standards/architecture/README.md#時刻タイムゾーン) に従いサーバー側で行う。クライアントでは入力補助・表示に利用する。
 - `shadcn/ui` Calendarの内部エンジンであるReact DayPickerと同じ依存へ寄せ、別の日付ライブラリを増やさない。
 - 明示的なタイムゾーン表示が必要な場合のみ、`@date-fns/tz` の `TZDate` を併用する。
+
+確認日時点で最終リリース 4.4.0 (2026-05-29)。MITライセンス。
 
 ---
 
