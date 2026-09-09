@@ -48,7 +48,7 @@ StandardsとPlaybookの両方に変更がある場合は、原則としてStanda
 | `ai-dev-platform` | Release Please | submoduleの組合せとRecommendationsをreleaseする |
 | `ui-platform` | リポジトリとnpm packageを個別にrelease | 詳細は`ui-platform` READMEを正とする |
 
-Standards / Playbook / Platformは同じ最小構成のRelease Pleaseを利用します。共通Workflow repositoryや追加設定は設けず、複数packageや独自tagを持つUI Platformは個別に管理します。
+Standards / Playbook / Platformは同じ最小構成のRelease Pleaseを利用します。共通Workflow repositoryや追加設定は設けず、複数packageや独自tagを持つUI Platformは個別に管理します。fork判定は現時点でPlatformのWorkflowだけが持ちます。
 
 具体的な導入・運用・失敗時の確認は[リポジトリのリリースPlaybook](../playbook/playbooks/repository-release.md)を参照してください。
 
@@ -56,7 +56,7 @@ Standards / Playbook / Platformは同じ最小構成のRelease Pleaseを利用�
 
 共有資産をforkして利用する場合、forkは配布・検証・upstreamとの往復に使い、独自のreleaseは行いません（[ADR-0005](../standards/decisions/adr-0005-upstream-fork-operation.md)）。
 
-- forkではRelease Pleaseを実行しない。各リポジトリのWorkflowはforkを判定してjobをskipする。
+- forkではRelease Pleaseを実行しない。PlatformのWorkflowはforkを判定して`release` jobをskipする。Standards / Playbookのforkでは、同じ判定が入るまでWorkflowを無効化するか、Release Pleaseが作成したrelease PRをmergeしない。
 - forkはupstreamのrelease tagを同期するだけで、独自のversionを切らない。`version.txt`と`CHANGELOG.md`はupstreamが所有する。
 - forkがupstreamより先行する変更をApplicationが直ちに利用する場合は、fork上のcommitで固定する。upstreamがreleaseした後にtag固定へ戻す。
 - Release notesの正本はupstreamのGitHub Releaseとする。forkにはtagがあれば足りる。

@@ -135,11 +135,12 @@ Application側からStandards / Playbookを個別にlatestへ進めません。*
 
 Platformをrelease tagまたはcommitへ固定している場合はmainへ切り替えず、その固定commitが指すsubmoduleを利用します。
 
-forkしたPlatformを利用している場合は、upstreamのrelease tagをforkへ同期します。forkでは独自のversionを切りません（[リリース方針](release.md)）。upstreamを `upstream` remoteとして登録している場合の例です。
+forkしたPlatformを利用している場合は、採用するupstreamのrelease tagをforkへ同期します。forkでは独自のversionを切りません（[リリース方針](release.md)）。`git push --tags` はforkにしか無いtagも公開するため使わず、tagを1つ指定してpushします。upstreamを `upstream` remoteとして登録している場合の例です。
 
 ```bash
-git fetch upstream --tags
-git push origin --tags
+PLATFORM_RELEASE_TAG="v1.2.0"
+git fetch upstream tag "$PLATFORM_RELEASE_TAG"
+git push origin "$PLATFORM_RELEASE_TAG"
 ```
 
 ## 完了条件
