@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.2...v1.2.3) (2026-09-10)
+
+
+### Bug Fixes
+
+* Standards v1.1.2を採用する ([7a87196](https://github.com/hamirilo/ai-dev-platform/commit/7a8719680fcea329403d8d7ed64b66c7ad1b91db))
+
 ## [1.2.2](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.1...v1.2.2) (2026-09-10)
 
 
