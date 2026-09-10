@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.4...v1.2.5) (2026-09-10)
+
+
+### Bug Fixes
+
+* Playbook v1.2.2を採用する ([4e82c68](https://github.com/hamirilo/ai-dev-platform/commit/4e82c68fd4d84d78beceff7ff09750dc403cf3c2))
+
 ## [1.2.4](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.3...v1.2.4) (2026-09-10)
 
 
