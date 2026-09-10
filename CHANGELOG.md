@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.1...v1.2.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* Standards v1.1.1とPlaybook v1.2.1を採用する ([5774109](https://github.com/hamirilo/ai-dev-platform/commit/577410949ecb5aad19525290e596f2f231a907ea))
+* Standards v1.1.1とPlaybook v1.2.1を採用する ([14a0154](https://github.com/hamirilo/ai-dev-platform/commit/14a0154087b4b1e46212c3a3d8092a26de648aae))
+
 ## [1.2.1](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.0...v1.2.1) (2026-09-09)
 
 
