@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.3...v1.2.4) (2026-09-10)
+
+
+### Bug Fixes
+
+* **ci:** release-please-actionをv5へ上げる ([195a627](https://github.com/hamirilo/ai-dev-platform/commit/195a627c52ebb8c86f71b298154f8687c993cd9b))
+
 ## [1.2.3](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.2...v1.2.3) (2026-09-10)
 
 
