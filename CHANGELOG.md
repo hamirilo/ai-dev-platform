@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.5...v1.2.6) (2026-09-17)
+
+
+### Bug Fixes
+
+* update Playbook to v1.3.1 ([#22](https://github.com/hamirilo/ai-dev-platform/issues/22)) ([b582946](https://github.com/hamirilo/ai-dev-platform/commit/b582946cb44aadb52867de113c43e621a1d71db3))
+
 ## [1.2.5](https://github.com/hamirilo/ai-dev-platform/compare/v1.2.4...v1.2.5) (2026-09-10)
 
 
