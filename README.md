@@ -1,3 +1,5 @@
+> 移行先: [hamirilo/hamirilo-platform](https://github.com/hamirilo/hamirilo-platform) の `CLAUDE.md（ルート）`
+
 # AI Development Platform
 
 開発時に「何を守るか・何を選ぶか・どう実施するか」へ適切にルーティングする **統合入口（composition root）** です。
